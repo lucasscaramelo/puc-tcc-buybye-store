@@ -10,3 +10,8 @@ Protótipo representa as 3 principais funções do sistema, sendo elas:
 
 FIGMA
 > https://www.figma.com/file/7YqjEpevFxzjGFd6YNf6BT/buybye-prototipo?node-id=0%3A1
+
+Vídeo explicativo do protótipo:
+```
+path: etapa1/video/
+```
