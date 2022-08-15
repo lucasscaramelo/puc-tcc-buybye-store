@@ -13,5 +13,6 @@ FIGMA
 
 Vídeo explicativo do protótipo:
 ```
-path: etapa1/video/
+path: etapa1/prototipo-video/
 ```
+Fazer download do zip e abri-lo.
