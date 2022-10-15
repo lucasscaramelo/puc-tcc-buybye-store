@@ -16,3 +16,20 @@ Vídeo explicativo do protótipo:
 path: etapa1/prototipo-video/
 ```
 Fazer download do zip e abri-lo.
+
+
+## Nova funcionalidade
+
+Foi proposto na etapa 2 que fosse desenvolvida a primeira funcionalidade do sistema e apresentada em video.
+
+No meu caso, para compor a funcionalidade principal "Cadastro de produto", foi preciso criar mais 3 funções, sendo elas:
+
+- [X] Cadastro de categoria
+- [X] Cadastro de marca
+- [X] Cadastro de modelo
+
+Vídeo explicativo da funcionalidade:
+```
+path: etapa2/funcionalidade-video/
+```
+Fazer download do zip e abri-lo.
