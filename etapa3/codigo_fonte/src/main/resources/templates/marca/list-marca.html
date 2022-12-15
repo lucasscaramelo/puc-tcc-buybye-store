@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorate="layout">
+      layout:decorate="~{layout}">
 <head>
     <title>Lista Marcas</title>
 </head>
@@ -58,7 +58,7 @@
                                     <tbody>
                                         <tr th:each="marca : ${listMarca}">
                                             <td th:text="${marca.id}"></td>
-                                            <td th:text="${marca.name}"></td>
+                                            <td th:text="${marca.nome}"></td>
                                             <td>
                                                 <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/marca/edit/' + ${marca.id}}"><i class="fa fa-edit"></i> Editar</a>
                                                 <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/marca/edit/' + ${marca.id}}"><i class="fa fa-trash-o"></i> Excluir</a>

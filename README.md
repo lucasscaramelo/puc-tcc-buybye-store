@@ -51,3 +51,4 @@ Vídeo review final:
 ```
 path: etapa3/video-final/
 ```
+Fazer download do zip e abri-lo.

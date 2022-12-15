@@ -18,8 +18,8 @@ public class MarcaController {
     @Autowired
     private MarcaPort marcaPort;
 
-    private String add_edit_template="/marca/add-edit-marca";
-    private String list_template="/marca/list-marca";
+    private String add_edit_template="marca/add-edit-marca";
+    private String list_template="marca/list-marca";
     private String list_redirect="redirect:/marca/list";
 
     @GetMapping("/add")

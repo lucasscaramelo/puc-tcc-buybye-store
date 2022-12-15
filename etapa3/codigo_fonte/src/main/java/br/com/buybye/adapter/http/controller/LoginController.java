@@ -22,7 +22,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(Model model) {
 
-        return "/auth/login";
+        return "auth/login";
     }
 
     @GetMapping("/register")
@@ -30,7 +30,7 @@ public class LoginController {
         Usuario userRegistrationDto = new Usuario();
         model.addAttribute("userRegistrationDto", userRegistrationDto);
 
-        return "/auth/register";
+        return "auth/register";
     }
 
     @PostMapping("/register")
@@ -39,13 +39,13 @@ public class LoginController {
         UsuarioEntity userExists = usuarioPort.findByUsername(userRegistrationDto.getUsername());
 
         if (userExists != null) {
-            return "redirect:/register?username";
+            return "redirect:register?username";
         }
         if(result.hasErrors()){
-            return "/auth/register";
+            return "auth/register";
         }
         usuarioPort.save(userRegistrationDto);
 
-        return "redirect:/register?success";
+        return "redirect:register?success";
     }
 }

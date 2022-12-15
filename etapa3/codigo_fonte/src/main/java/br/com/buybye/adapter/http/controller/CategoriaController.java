@@ -20,8 +20,8 @@ public class CategoriaController {
     @Autowired
     private CategoriaPort categoriaPort;
 
-    private String add_edit_template="/categoria/add-edit-categoria";
-    private String list_template="/categoria/list-categoria";
+    private String add_edit_template="categoria/add-edit-categoria";
+    private String list_template="categoria/list-categoria";
     private String list_redirect="redirect:/categoria/list";
 
     @GetMapping("/add")

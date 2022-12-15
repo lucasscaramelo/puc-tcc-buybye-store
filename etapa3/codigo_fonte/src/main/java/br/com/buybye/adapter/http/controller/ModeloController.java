@@ -22,8 +22,8 @@ public class ModeloController {
     @Autowired
     private ModeloPort modeloPort;
 
-    private String add_edit_template="/modelo/add-edit-modelo";
-    private String list_template="/modelo/list-model";
+    private String add_edit_template="modelo/add-edit-modelo";
+    private String list_template="modelo/list-modelo";
     private String list_redirect="redirect:/modelo/list";
 
     @GetMapping("/add")

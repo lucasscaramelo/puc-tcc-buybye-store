@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   function getDashboardStatistics(){
       $.ajax({
-          url: "/admin/api/dashboard/statistics",
+          url: "api/dashboard/statistics",
           'dataType': "json",
         }).done(function(data) {
             $('#count_product').text(data.count_product);

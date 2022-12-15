@@ -34,8 +34,8 @@ public class ProdutoController {
     @Autowired
     private ModeloPort modeloPort;
 
-    private String add_edit_template="/produto/add-edit-produto";
-    private String list_template="/produto/list-produto";
+    private String add_edit_template="produto/add-edit-produto";
+    private String list_template="produto/list-produto";
     private String list_redirect="redirect:/produto/list";
 
 
@@ -76,7 +76,7 @@ public class ProdutoController {
     }
 
     @PostMapping("/save")
-    public String saveProduct(@Valid @ModelAttribute("product") ProdutoEntity product, BindingResult result, org.springframework.ui.Model model){
+    public String saveProduct(@Valid @ModelAttribute("produto") ProdutoEntity product, BindingResult result, org.springframework.ui.Model model){
         model.addAttribute("produto", product);
 
         List<CategoriaEntity> categories = categoriaPort.findAll();
