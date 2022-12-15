@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Lista Produtos</title>
+</head>
+<body>
+    <section layout:fragment="header">
+        <h1>
+            Lista Produtos
+            <small>Painel de Controle</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Lista Produtos</li>
+        </ol>
+    </section>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Lista Produtos</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="box-footer center">
+                            <a th:href="@{/produto/add}">
+                                <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Adicionar</button>
+                            </a>
+                        </div>
+                        <div th:if="${param.success}">
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+                                Produto cadastrado com sucesso.
+                            </div>
+                        </div>
+                        <div th:if="${param.deleted}">
+                            <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Deletado!</h4>
+                                Produto deletado com sucesso.
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                           aria-describedby="example1_info">
+                                        <thead class="thead">
+                                        <tr>
+                                            <th>Imagem</th>
+                                            <th>ID Produto</th>
+                                            <th>Categoria</th>
+                                            <th>Código</th>
+                                            <th>Nome</th>
+                                            <th>Preço</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="produto : ${listProdutos}">
+                                            <td>
+                                                <img th:src="@{${produto.getImagemUrl()}}" style="width:50px;height:50px;" />
+                                            </td>
+                                            <td th:text="${produto.id}"></td>
+                                            <td th:each="categoria : ${categorias}"
+                                                th:if="(${categoria.id} == ${produto.categoria.id})"
+                                                th:text="${categoria.nome}">
+                                            </td>
+                                            <td th:text="${produto.codProduto}"></td>
+                                            <td th:text="${produto.nome}"></td>
+                                            <td th:text="${produto.precoPromo}"></td>
+                                            <td th:text="${produto.status}"></td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/produto/edit/' + ${produto.id}}"><i class="fa fa-edit"></i> Editar</a>
+                                                <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/produto/edit/' + ${produto.id}}"><i class="fa fa-trash-o"></i> Excluir</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <th:block layout:fragment="script">
+         <script>
+              $(function () {
+
+                $('#example1').DataTable({
+                  'paging'      : true,
+                  'lengthChange': false,
+                  'searching'   : true,
+                  'ordering'    : true,
+                  'info'        : true,
+                  'autoWidth'   : false
+                })
+
+                jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+              })
+        </script>
+    </th:block>
+</body>
+</html>

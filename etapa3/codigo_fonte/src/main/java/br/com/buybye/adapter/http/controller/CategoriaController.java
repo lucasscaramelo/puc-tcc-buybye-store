@@ -53,7 +53,7 @@ public class CategoriaController {
     @GetMapping("/list")
     public String listCategory(Model model) {
         List<CategoriaEntity> listCategories = categoriaPort.findAll();
-        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("listCategorias", listCategories);
 
         return list_template;
     }

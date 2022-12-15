@@ -17,6 +17,13 @@ import java.util.Collection;
 @Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class UsuarioEntity {
 
+    public UsuarioEntity(String nome, String sobrenome, String email, String senha){
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.username = email;
+        this.senha = senha;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")

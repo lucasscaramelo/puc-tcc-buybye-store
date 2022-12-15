@@ -28,6 +28,9 @@ public class SetupData implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private ModeloRepository modelRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -49,6 +52,9 @@ public class SetupData implements ApplicationListener<ContextRefreshedEvent> {
 
         //Setup modelo
         createModelIfNotFound(new ModeloEntity("Todos os modelos", allMake));
+
+        //Setup Usuario
+       // createUserAdminIfNotFound(new UsuarioEntity("Buybye", "Admin", "admin@buybye.com.br", "admin123"));
     }
 
     @Transactional
@@ -105,5 +111,16 @@ public class SetupData implements ApplicationListener<ContextRefreshedEvent> {
         }
 
         return model1;
+    }
+
+    @Transactional
+    UsuarioEntity createUserAdminIfNotFound(UsuarioEntity user) {
+        UsuarioEntity user1 = usuarioRepository.findByUsername(user.getUsername());
+        if (user1 == null) {
+            usuarioRepository.save(user);
+            user1 = usuarioRepository.findByUsername(user.getUsername());
+        }
+
+        return user1;
     }
 }

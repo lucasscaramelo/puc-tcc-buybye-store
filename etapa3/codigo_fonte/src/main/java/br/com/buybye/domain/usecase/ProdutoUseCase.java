@@ -123,8 +123,7 @@ public class ProdutoUseCase implements ProdutoPort {
     public void save(ProdutoEntity produto) {
         productRepository.save(produto);
 
-        if(produto.getImagem_carregada().getSize() > 0
-        ) {
+        if(produto.getImagem_carregada()!= null && produto.getImagem_carregada().getSize() > 0) {
             if(produto.getImagem_carregada().getSize() > 0 ) {
                 String imagem = ImageUpload(produto.getId(), produto.getImagem_carregada());
                 produto.setImagem(imagem);
