@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Categoria</title>
+</head>
+<body>
+    <section layout:fragment="header">
+        <h1>
+            Categoria
+            <small>Painel de Controle</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Detalhes Categoria</li>
+        </ol>
+    </section>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Detalhes Categoria</h3>
+                    </div>
+                    <form th:action="@{/categoria/save}" th:object="${categoria}" method="post" class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">ID Categoria</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="ID Categoria">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Nome</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  th:field="*{nome}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Descrição</label>
+                                <div class="col-sm-10">
+                                     <textarea name="description" rows="5" class="form-control"
+                                               id="description" th:field="*{descricao}"
+                                               placeholder="Descrição" /></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Status Ativo</label>
+                                <div class="col-sm-10">
+                                    <select id="isActive" name="isActive" th:field="*{status}" class="form-control">
+                                        <option th:value="true">ATIVO</option>
+                                        <option th:value="false">INATIVO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer center">
+                            <a th:href="@{/categoria/list}">
+                                <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancelar</button>
+                            </a>
+                            <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <th:block layout:fragment="script">
+        <script>
+        </script>
+    </th:block>
+
+</body>
+
+</html>

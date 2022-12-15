@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Marca</title>
+</head>
+<body>
+    <section layout:fragment="header">
+        <h1>
+            Marca
+            <small>Painel de Controle</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Detalhes Marca</li>
+        </ol>
+    </section>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Detalhes Marcas</h3>
+                    </div>
+                    <form th:action="@{/marca/save}" th:object="${marca}" method="post" class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">ID Marca</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="ID Marca">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Nome</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  th:field="*{nome}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer center">
+                            <a th:href="@{/marca/list}">
+                                <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancelar</button>
+                            </a>
+                            <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
