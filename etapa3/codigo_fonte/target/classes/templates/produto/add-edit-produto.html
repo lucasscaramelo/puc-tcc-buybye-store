@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Produto</title>
+</head>
+<body>
+    <section layout:fragment="header">
+        <h1>
+            Produto
+            <small>Painel de Controle</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Detalhes Produto</li>
+        </ol>
+    </section>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Detalhes Produto</h3>
+                    </div>
+                    <form th:action="@{/produto/save}" th:object="${produto}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">ID Produto</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="ID Produto">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Categoria:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" th:field="*{categoria.id}">
+                                        <option value="">Selecionar...</option>
+                                        <option th:each="categoryInfo : ${categorias}" th:value="${categoryInfo.id}" th:utext="${categoryInfo.nome}"/>
+                                    </select>
+                                    <p class="text-red" th:if="${#fields.hasErrors('categoria.id')}" th:errors="*{categoria.id}"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Marca:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control make" th:field="*{marca.id}">
+                                        <option th:each="makeInfo : ${listMarca}" th:value="${makeInfo.id}" th:utext="${makeInfo.nome}"/>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Modelo:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control model" th:field="*{modelo.id}">
+                                        <option th:each="modelInfo : ${listModelo}" th:value="${modelInfo.id}" th:utext="${modelInfo.nome}"/>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Código:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  th:field="*{codProduto}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('codProduto')}" th:errors="*{codProduto}"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Nome:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"  th:field="*{nome}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Descrição:</label>
+                                <div class="col-sm-10">
+                                     <textarea name="description" rows="5" class="form-control"
+                                               id="description" th:field="*{descricao}"
+                                               placeholder="Descricao" /></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Qtd Estoque:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" th:field="*{estoque}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('estoque')}" th:errors="*{estoque}"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Preço Custo:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" th:field="*{precoCusto}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('precoCusto')}" th:errors="*{precoCusto}"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Preço Mercado:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" th:field="*{precoPromo}" />
+                                    <p class="text-red" th:if="${#fields.hasErrors('precoPromo')}" th:errors="*{precoPromo}"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Status Ativo</label>
+                                <div class="col-sm-10">
+                                    <select th:field="*{status}" class="form-control">
+                                        <option value="true">ATIVO</option>
+                                        <option value="false">INATIVO</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label for="image_posted1">Carregar Imagem:</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input id="image_posted1" type="file" name="image_posted1" th:value="${image_posted1}" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="hidden" th:field="*{imagem}"/>
+                                    <img th:src="@{${produto.getImagemUrl()}}" style="width:150px;height:150px;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer center">
+                            <a th:href="@{/produto/list}">
+                                <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancelar</button>
+                            </a>
+                            <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block layout:fragment="script">
+        <script type="text/javascript">
+            function getModels() {
+                var marca = $(".marca").val();
+                $.get( "../models?marca=" + marca, function( data ) {
+                    $(".modelo").empty();
+                    data.forEach(function(item, i) {
+                        var option = "<option value = " + item.id + ">" + item.nome +  "</option>";
+                        $(".modelo").append(option);
+                    });
+                });
+            };
+            $(document).ready(function() {
+                $(".marca").change(function() {
+                    getModels();
+                });
+            });
+        </script>
+    </th:block>
+
+</body>
+
+</html>
